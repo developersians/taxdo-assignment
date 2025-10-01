@@ -1,0 +1,6 @@
+@TaxdoAssignment.UserApi_HostAddress = http://localhost:5042
+
+GET {{TaxdoAssignment.UserApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

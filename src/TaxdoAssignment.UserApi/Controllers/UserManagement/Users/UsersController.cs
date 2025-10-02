@@ -59,6 +59,6 @@ public class UsersController(ISender sender) : ControllerBase
 
         Guid result = await sender.Send(command, cancellationToken);
 
-        return CreatedAtAction(nameof(GetById), result);
+        return CreatedAtAction(nameof(GetById), new { id = result }, result);
     }
 }

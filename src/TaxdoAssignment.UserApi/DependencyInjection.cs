@@ -1,10 +1,31 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.OpenApi.Models;
 
 namespace TaxdoAssignment.UserApi;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddCustomSwagger(this IServiceCollection services)
+    public static IServiceCollection AddApiLayer(this IServiceCollection services)
+    {
+        services.AddCustomControllers();        
+        services.AddCustomSwagger();
+
+        return services;
+    }
+
+    private static IServiceCollection AddCustomControllers(this IServiceCollection services)
+    {
+        services.AddControllers(options =>
+        {
+            options.Conventions.Add(
+                new RouteTokenTransformerConvention(new KebabCaseParameterTransformer())
+            );
+        });
+
+        return services;
+    }
+
+    private static IServiceCollection AddCustomSwagger(this IServiceCollection services)
     {
         services.AddEndpointsApiExplorer();
 

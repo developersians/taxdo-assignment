@@ -2,6 +2,8 @@
 
 public sealed class Name : ValueObject
 {
+    private Name() { }
+
     public string Value { get; }
 
     public Name(string name)

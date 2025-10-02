@@ -2,6 +2,8 @@
 
 public sealed class Email : ValueObject
 {
+    private Email() { }
+
     public string Value { get; }
 
     public Email(string email, bool isEmailUnique)

@@ -1,4 +1,7 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq.Expressions;
+using System.Threading;
 using TaxdoAssignment.Domain;
 
 namespace TaxdoAssignment.Infrastructure;
@@ -7,23 +10,49 @@ public class Repository<TAggregateRoot>(AppDbContext context)
     : IRepository<TAggregateRoot>
     where TAggregateRoot : Entity, IAggregateRoot
 {
-    public Task<TAggregateRoot> GetAsync(Guid id, CancellationToken cancellation = default)
+    public async Task<bool> ExistsAsync(Expression<Func<TAggregateRoot, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await context
+            .Set<TAggregateRoot>()
+            .Where(predicate)
+            .AnyAsync(cancellationToken);
     }
 
-    public Task<TAggregateRoot> GetAsync(Expression<Func<TAggregateRoot, bool>> predicate, CancellationToken cancellation = default)
+    public async Task<TAggregateRoot?> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await context
+            .Set<TAggregateRoot>()
+            .Where(p => p.Id == id)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task<IEnumerable<TAggregateRoot>> GetListAsync(CancellationToken cancellation = default)
+    public async Task<TAggregateRoot?> GetAsync(Expression<Func<TAggregateRoot, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await context
+            .Set<TAggregateRoot>()
+            .Where(predicate)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task<IEnumerable<TAggregateRoot>> GetListAsync(Expression<Func<TAggregateRoot, bool>> predicate, CancellationToken cancellation = default)
+    public async Task<IEnumerable<TAggregateRoot>> GetListAsync(CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await context
+            .Set<TAggregateRoot>()
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<IEnumerable<TAggregateRoot>> GetListAsync(Expression<Func<TAggregateRoot, bool>> predicate, CancellationToken cancellationToken = default)
+    {
+        return await context
+            .Set<TAggregateRoot>()
+            .Where(predicate)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task AddAsync(TAggregateRoot aggregate, CancellationToken cancellationToken = default)
+    {
+        await context
+            .Set<TAggregateRoot>()
+            .AddAsync(aggregate);
     }
 }

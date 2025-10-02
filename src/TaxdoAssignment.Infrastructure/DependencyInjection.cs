@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using TaxdoAssignment.Application.Shared;
 using TaxdoAssignment.Domain;
 using TaxdoAssignment.Domain.Shared;
 using TaxdoAssignment.Infrastructur;
@@ -20,6 +22,8 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork>(c => c.GetRequiredService<AppDbContext>());
 
         services.AddSingleton<IGuidGenerator, GuidGenerator>();
+
+        services.AddSingleton<IPasswordHasher, SimplePasswordHasher>();
 
         return services;
     }

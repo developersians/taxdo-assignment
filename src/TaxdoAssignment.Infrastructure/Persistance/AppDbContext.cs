@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TaxdoAssignment.Domain;
+using TaxdoAssignment.Domain.Shared;
 
 namespace TaxdoAssignment.Infrastructure;
 

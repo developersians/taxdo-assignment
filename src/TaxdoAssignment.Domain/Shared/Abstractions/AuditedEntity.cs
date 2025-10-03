@@ -1,4 +1,4 @@
-﻿namespace TaxdoAssignment.Domain;
+﻿namespace TaxdoAssignment.Domain.Shared;
 
 public class AuditedEntity : Entity
 {

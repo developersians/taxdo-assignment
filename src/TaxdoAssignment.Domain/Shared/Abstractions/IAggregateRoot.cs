@@ -1,4 +1,4 @@
-﻿namespace TaxdoAssignment.Domain;
+﻿namespace TaxdoAssignment.Domain.Shared;
 
 // Marker interface
 public interface IAggregateRoot{}

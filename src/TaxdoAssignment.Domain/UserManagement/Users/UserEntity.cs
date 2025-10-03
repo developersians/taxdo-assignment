@@ -1,4 +1,6 @@
-﻿namespace TaxdoAssignment.Domain;
+﻿using TaxdoAssignment.Domain.Shared;
+
+namespace TaxdoAssignment.Domain;
 
 public sealed class UserEntity : AuditedEntity, IAggregateRoot
 {

@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace TaxdoAssignment.Domain;
+namespace TaxdoAssignment.Domain.Shared;
 
 public interface IRepository<TAggregateRoot> : IAggregateRoot
 {

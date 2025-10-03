@@ -2,7 +2,10 @@
 
 namespace TaxdoAssignment.Domain;
 
-public sealed record UserCreatedEvent(string Name, Email Email) : IDomainEvent
+public sealed record UserCreatedEvent(
+    Guid Id,
+    string Name,
+    string Email) : IDomainEvent
 {
     public DateTime OccurredOn => DateTime.UtcNow;
 }

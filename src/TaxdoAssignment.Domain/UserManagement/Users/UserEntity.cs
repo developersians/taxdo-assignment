@@ -40,7 +40,7 @@ public sealed class UserEntity : AuditedEntity, IAggregateRoot
             passwordHash,
             isEmailUnique);
 
-        entity.AddDomainEvent(new UserCreatedEvent(name, validEmail));
+        entity.AddDomainEvent(new UserCreatedEvent(entity.Id, name, email));
 
         return entity;
     }

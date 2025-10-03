@@ -4,6 +4,8 @@ using TaxdoAssignment.UserApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHostedService<OutboxProcessorHostedService>();
+
 builder.Services.AddApplicationLayer();
 builder.Services.AddInfrastructureLayer(builder.Configuration);
 builder.Services.AddApiLayer();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using TaxdoAssignment.Application.Shared;
 using TaxdoAssignment.Domain;
 using TaxdoAssignment.Domain.Shared;
@@ -22,6 +21,13 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork>(c => c.GetRequiredService<AppDbContext>());
 
         services.AddSingleton<IGuidGenerator, GuidGenerator>();
+
+        var emailSettings = configuration.GetSection("EmailSettings").Get<EmailSettings>();
+        services.AddSingleton(emailSettings);
+
+        //services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
+
+        services.AddScoped<IEmailSender, EmailSender>();
 
         services.AddSingleton<IPasswordHasher, SimplePasswordHasher>();
 

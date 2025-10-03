@@ -14,7 +14,7 @@ public class OutboxProcessorHostedService(
     IServiceScopeFactory serviceScopeFactory,
     ILogger<OutboxProcessorHostedService> logger) : BackgroundService
 {
-    private readonly TimeSpan _processInterval = TimeSpan.FromSeconds(5);
+    private readonly TimeSpan _processInterval = TimeSpan.FromSeconds(10);
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {

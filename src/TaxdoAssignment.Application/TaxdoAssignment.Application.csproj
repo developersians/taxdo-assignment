@@ -17,4 +17,8 @@
     <ProjectReference Include="..\TaxdoAssignment.Domain\TaxdoAssignment.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Shared\NewFolder\" />
+  </ItemGroup>
+
 </Project>

@@ -33,7 +33,7 @@ public class AppDbContext(
 
     private List<IDomainEvent> ExtractDomainEvents()
     {
-        var domainEntities = ChangeTracker.Entries<Entity>()
+        var domainEntities = ChangeTracker.Entries<AuditedEntity>()
             .Where(x => x.Entity.GetDomainEvents().Count != 0)
             .Select(x => x.Entity)
             .ToList();
